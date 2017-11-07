@@ -1,0 +1,18 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+<!--CardView nustatymai-->
+    <dimen name="cardView_content_pading">8dp</dimen>
+    <dimen name="cardView_corner_radius">0dp</dimen>
+    <dimen name="cardView_elevation">8dp</dimen>
+    <dimen name="cardView_height">55dp</dimen>'
+
+    <!--request row text width-->
+    <dimen name="textWidtDate">100dp</dimen>
+    <dimen name="textWidtCount">60dp</dimen>
+    <dimen name="textWidtPrice">60dp</dimen>
+    <dimen name="textWidtAccept">120dp</dimen>
+</resources>

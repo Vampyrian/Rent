@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "992538670676",
+    "firebase_url": "https://rent-74771.firebaseio.com",
+    "project_id": "rent-74771",
+    "storage_bucket": "rent-74771.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992538670676:android:ad461df5d97de078",
+        "android_client_info": {
+          "package_name": "gf.nuoma.pv.rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992538670676-h698rhl7dfk0hfcipn3vs9ispvumh4e7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gf.nuoma.pv.rent",
+            "certificate_hash": "49f5f0454dfe9dbf38916e9cfe9ac3ec465d2637"
+          }
+        },
+        {
+          "client_id": "992538670676-ae0olrobinu8cfpsfgvcsa365r6v3eco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbeZ2_gDdI2htKQJKu0aTLrtf5Fwd3rwY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992538670676-ae0olrobinu8cfpsfgvcsa365r6v3eco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

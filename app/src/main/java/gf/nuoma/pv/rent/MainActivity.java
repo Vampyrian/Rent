@@ -1,0 +1,95 @@
+package gf.nuoma.pv.rent;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import gf.nuoma.pv.rent.ui.requestFragment.RequestFragment;
+import gf.nuoma.pv.rent.ui.signInFragment.SignInFragment;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = "MainActivity";
+    private FirebaseAuth mAuth;
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_calendar:
+                    return true;
+                case R.id.navigation_info:
+                    return true;
+                case R.id.navigation_request:
+                    return true;
+                case R.id.navigation_settings:
+                    return true;
+            }
+            return false;
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            showSignInFragment();
+        } else {
+            showRequestFragment();
+        }
+    }
+
+    //Tiesiog durnas apdirbimas. Tegu pabando uzdaryti klaviatura ir tiek
+    private void hideKeyboard() {
+        try {
+            InputMethodManager imn = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imn.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+        }
+    }
+
+    /*
+    ****************************************Navigacija tarp fragmentu
+     */
+
+    public void showSignInFragment () {
+        SignInFragment fragment = new SignInFragment();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, fragment)
+                .commit();
+        hideKeyboard();
+    }
+
+    public void showRequestFragment () {
+        RequestFragment fragment = new RequestFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, fragment)
+                .commit();
+        hideKeyboard();
+    }
+
+}

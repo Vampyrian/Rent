@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Rent</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!--Navigation-->
+    <string name="navigation_uzklausa">Užklausos</string>
+    <string name="navigation_kalendorius">Kalendorius</string>
+    <string name="navigation_informacija">Informacija</string>
+    <string name="navigation_nustatymai">Nustatymai</string>
+
+
+    <!--Toast-->
+    <string name="toastNeivestasEmailas">Neivestas elektroninio pašto adresas</string>
+    <string name="toastNeivestasSlaptazodis">Neivestas slaptažodis</string>
+    <string name="toastSlaptazodisPerMazas">Slaptažodis turi būti ne mažesnis nei 6 simboliai</string>
+    <string name="toastPaskyraNesukurta">Slaptažodis turi būti ne mažesnis nei 6 simboliai</string>
+    <string name="toastNepavykoPrisijungti">Slaptažodis turi būti ne mažesnis nei 6 simboliai</string>
+
+
+
+
+    <!--SignInFragment-->
+    <string name="email">Įrašykite elektroninį paštą</string>
+    <string name="tel">Įrašykite telefono numerį</string>
+    <string name="password">Įrašykite slaptažodį</string>
+    <string name="sing_up_acc">Sukurti paskyrą</string>
+    <string name="sing_in_acc">Prisijungiti</string>
+
+    <!--RequestFragment-->
+    <string name="requestList">Užklausų sąrašas</string>
+
+
+
+
+</resources>
