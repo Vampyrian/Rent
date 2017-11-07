@@ -62,7 +62,7 @@ public class RequestFragment extends Fragment {
             List<Request> requestList = new ArrayList<>();
 
             for(DataSnapshot data: dataSnapshot.getChildren()) {
-                Request request = dataSnapshot.getValue(Request.class);
+                Request request = data.getValue(Request.class);
                 requestList.add(request);
             }
 
