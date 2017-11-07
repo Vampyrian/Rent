@@ -26,4 +26,6 @@
 # This rule will properly ProGuard all the model classes in
 # the package com.yourcompany.models. Modify to fit the structure
 # of your app.
--keepclassmembers class gf.nuoma.pv.rent.model.Request.class
+-keepclassmembers class gf.nuoma.pv.rent.model.** {
+*;
+}

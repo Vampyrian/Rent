@@ -5,9 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +28,8 @@ public class RequestFragment extends Fragment {
     private static final String LOG_TAG = "RequestFragment";
     private RequestFragmentBinding mBinding;
     private RequestAdapter mAdapter;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Nullable
     @Override
@@ -30,17 +40,50 @@ public class RequestFragment extends Fragment {
         mBinding.recyclerView.setAdapter(mAdapter);
         mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return mBinding.getRoot();
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        durniDuomenys();
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("requestList");
+        mDatabase.addValueEventListener(listener);
     }
 
+    private void write() {
+        mDatabase.child("ehsbtb").setValue("abas");
+    }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            Log.d(LOG_TAG, "Gavome duomenis");
+
+            List<Request> requestList = new ArrayList<>();
+
+            for(DataSnapshot data: dataSnapshot.getChildren()) {
+                Request request = dataSnapshot.getValue(Request.class);
+                requestList.add(request);
+            }
+
+            mAdapter.setRequestList(requestList);
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
+
+
+
+
+
+
     private void durniDuomenys() {
-        Request request = new Request("2017.12.12", "10 žm.", "300 eur.", 1);
+        Request request = new Request(20171212, 20, 300, 1);
         List<Request> list = new ArrayList<>();
         list.add(request);
         list.add(request);

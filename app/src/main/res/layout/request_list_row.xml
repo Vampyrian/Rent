@@ -29,7 +29,7 @@
                 android:layout_width="@dimen/textWidtDate"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{request.date}"
+                android:text="@{Integer.toString(request.date)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="@{request.count}"
+                android:text='@{Integer.toString(request.count) + " žm."}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toEndOf="@+id/textView_date"
@@ -49,10 +49,10 @@
             <TextView
                 android:id="@+id/textView_price"
                 android:layout_width="@dimen/textWidtCount"
-               android:layout_height="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="@{request.price}"
+                android:text='@{Integer.toString(request.price) + " eur."}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_accept"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
