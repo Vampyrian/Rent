@@ -63,16 +63,15 @@ public class RequestFragment extends Fragment {
 
             for(DataSnapshot data: dataSnapshot.getChildren()) {
                 Request request = data.getValue(Request.class);
+                request.key = data.getKey();
                 requestList.add(request);
             }
-
             mAdapter.setRequestList(requestList);
-
         }
 
         @Override
         public void onCancelled(DatabaseError databaseError) {
-
+            Log.w(LOG_TAG, "Kazkas negerai. Isauktas onCanselled", databaseError.toException());
         }
     };
 

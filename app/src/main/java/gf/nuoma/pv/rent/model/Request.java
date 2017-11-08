@@ -10,6 +10,7 @@ public class Request {
     public int price;
     public int accept;
     public String owner;
+    public String key;
 
     public Request () {
 
@@ -21,5 +22,6 @@ public class Request {
         this.price = price;
         this.accept = accept;
         owner = "nobody";
+        key = "noKey";
     }
 }

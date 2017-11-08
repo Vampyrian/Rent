@@ -56,6 +56,7 @@ public class SignInFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(LOG_TAG, "Pavyko prisijungti");
+                            showRequestFragment();
                         } else {
                             Log.w(LOG_TAG, "Nepavyko prisijungti");
                             Toast.makeText(getContext(), R.string.toastNepavykoPrisijungti, Toast.LENGTH_LONG).show();
@@ -71,6 +72,7 @@ public class SignInFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(LOG_TAG, "Paskyra sekmingai sukurta");
+                            showRequestFragment();
                         } else {
                             Log.w(LOG_TAG, "Paskyra nesukurta", task.getException());
                             Toast.makeText(getContext(), R.string.toastPaskyraNesukurta, Toast.LENGTH_LONG).show();
@@ -104,7 +106,7 @@ public class SignInFragment extends Fragment {
         imn.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    private void showLessonListFragment() {
+    private void showRequestFragment() {
         if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
             ((MainActivity) getActivity()).showRequestFragment();
         }

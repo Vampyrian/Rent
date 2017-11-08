@@ -1,5 +1,6 @@
 package gf.nuoma.pv.rent;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import gf.nuoma.pv.rent.databinding.MainActivityBinding;
 import gf.nuoma.pv.rent.ui.requestFragment.RequestFragment;
 import gf.nuoma.pv.rent.ui.signInFragment.SignInFragment;
 
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "MainActivity";
     private FirebaseAuth mAuth;
+    private MainActivityBinding mBinding;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -41,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = mBinding.navigation;
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mAuth = FirebaseAuth.getInstance();
@@ -74,21 +77,26 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void showSignInFragment () {
-        SignInFragment fragment = new SignInFragment();
+        mBinding.setBottomNavigationVisible(false);
 
+        SignInFragment fragment = new SignInFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)
                 .commit();
+
         hideKeyboard();
     }
 
     public void showRequestFragment () {
+        mBinding.setBottomNavigationVisible(true);
+
         RequestFragment fragment = new RequestFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)
                 .commit();
+
         hideKeyboard();
     }
 
