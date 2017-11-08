@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import gf.nuoma.pv.rent.databinding.MainActivityBinding;
+import gf.nuoma.pv.rent.ui.calendarFragment.CalendarFragment;
 import gf.nuoma.pv.rent.ui.requestFragment.RequestFragment;
 import gf.nuoma.pv.rent.ui.signInFragment.SignInFragment;
 
@@ -29,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_calendar:
+                    showCalendarFragment();
                     return true;
                 case R.id.navigation_info:
                     return true;
                 case R.id.navigation_request:
+                    showRequestFragment();
                     return true;
                 case R.id.navigation_settings:
                     return true;
@@ -92,6 +95,16 @@ public class MainActivity extends AppCompatActivity {
         mBinding.setBottomNavigationVisible(true);
 
         RequestFragment fragment = new RequestFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, fragment)
+                .commit();
+
+        hideKeyboard();
+    }
+
+    public void showCalendarFragment () {
+        CalendarFragment fragment = new CalendarFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)

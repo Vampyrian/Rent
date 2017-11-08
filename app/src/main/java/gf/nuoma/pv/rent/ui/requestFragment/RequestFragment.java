@@ -46,7 +46,7 @@ public class RequestFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("requestList");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.firebaseRequestListRef));
         mDatabaseRef.addValueEventListener(listener);
     }
 
@@ -72,7 +72,7 @@ public class RequestFragment extends Fragment {
         }
     };
 
-    
+
 
 
 

@@ -33,5 +33,12 @@
 
 
 
+    <!--FIREBASE-->
+    <string name="firebaseRequestListRef">requestList</string>
+
+
+
+
+    <string name="taskas">a</string>
 
 </resources>
