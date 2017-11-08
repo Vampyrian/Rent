@@ -65,9 +65,11 @@
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/white"
                 android:text='@{request.accept != 1 ? "PATVIRTINTA" : "NEPATVIRTINTA"}'
+                android:onClick="@{() -> callback.onAccept(request)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline2"

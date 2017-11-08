@@ -29,7 +29,7 @@ public class RequestFragment extends Fragment {
     private RequestFragmentBinding mBinding;
     private RequestAdapter mAdapter;
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseRef;
 
     @Nullable
     @Override
@@ -46,12 +46,8 @@ public class RequestFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("requestList");
-        mDatabase.addValueEventListener(listener);
-    }
-
-    private void write() {
-        mDatabase.child("ehsbtb").setValue("abas");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("requestList");
+        mDatabaseRef.addValueEventListener(listener);
     }
 
     ValueEventListener listener = new ValueEventListener() {
@@ -63,6 +59,7 @@ public class RequestFragment extends Fragment {
 
             for(DataSnapshot data: dataSnapshot.getChildren()) {
                 Request request = data.getValue(Request.class);
+
                 request.key = data.getKey();
                 requestList.add(request);
             }
@@ -75,22 +72,7 @@ public class RequestFragment extends Fragment {
         }
     };
 
-
-
-
-
-
-
-    private void durniDuomenys() {
-        Request request = new Request(20171212, 20, 300, 1);
-        List<Request> list = new ArrayList<>();
-        list.add(request);
-        list.add(request);
-        request.accept = 5;
-        list.add(request);
-        list.add(request);
-        mAdapter.setRequestList(list);
-    }
+    
 
 
 
@@ -100,12 +82,15 @@ public class RequestFragment extends Fragment {
      */
     private final RequestAdapterCallback mCallback = new RequestAdapterCallback() {
         @Override
-        public void onSelect(Request request) {
-            //TODO Cia kazka padaryti kai paspaudi adapteryje
+        public void onAccept(Request request) {
+            String email = mAuth.getCurrentUser().getEmail();
+            request.accept = 0;
+            request.owner = email;
+            mDatabaseRef.child(request.key).setValue(request);
         }
     };
 
     public interface RequestAdapterCallback {
-        void onSelect(Request request);
+        void onAccept(Request request);
     }
 }

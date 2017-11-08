@@ -1,5 +1,6 @@
 package gf.nuoma.pv.rent.model;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
@@ -10,6 +11,7 @@ public class Request {
     public int price;
     public int accept;
     public String owner;
+    @Exclude
     public String key;
 
     public Request () {

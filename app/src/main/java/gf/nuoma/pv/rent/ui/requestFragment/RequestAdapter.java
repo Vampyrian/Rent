@@ -57,7 +57,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
             mRequestList = newRequestList;
             result.dispatchUpdatesTo(this);
         }
-
     }
 
     @Override
@@ -74,7 +73,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     @Override
     public void onBindViewHolder(RequestViewHolder holder, int position) {
         holder.mBinding.setRequest(mRequestList.get(position));
-        holder.mBinding.executePendingBindings();
+//        holder.mBinding.executePendingBindings();
     }
 
     @Override
