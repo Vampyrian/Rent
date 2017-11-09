@@ -37,9 +37,10 @@ dependencies {
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 
     //FIREBASE
-    implementation 'com.google.firebase:firebase-auth:11.4.2'
-    implementation 'com.google.firebase:firebase-database:11.4.2'
-
+    implementation 'com.google.firebase:firebase-auth:11.6.0'
+    implementation 'com.google.firebase:firebase-database:11.6.0'
+    implementation 'com.google.firebase:firebase-core:11.6.0'
+    implementation 'com.google.firebase:firebase-messaging:11.6.0'
 }
 
 

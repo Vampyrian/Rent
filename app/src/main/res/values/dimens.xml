@@ -12,7 +12,7 @@
 
     <!--request row text width-->
     <dimen name="textWidtDate">100dp</dimen>
-    <dimen name="textWidtCount">60dp</dimen>
-    <dimen name="textWidtPrice">60dp</dimen>
-    <dimen name="textWidtAccept">130dp</dimen>
+    <dimen name="textWidtCount">50dp</dimen>
+    <dimen name="textWidtPrice">50dp</dimen>
+    <dimen name="textWidtAccept">120dp</dimen>
 </resources>

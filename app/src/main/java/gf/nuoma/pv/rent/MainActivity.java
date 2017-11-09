@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import gf.nuoma.pv.rent.databinding.MainActivityBinding;
 import gf.nuoma.pv.rent.ui.calendarFragment.CalendarFragment;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseMessaging.getInstance().subscribeToTopic("newRent");
     }
 
     @Override
