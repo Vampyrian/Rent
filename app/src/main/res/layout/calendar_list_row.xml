@@ -5,9 +5,6 @@
 
     <data>
         <variable
-            name="callback"
-            type="gf.nuoma.pv.rent.ui.requestFragment.RequestFragment.RequestAdapterCallback"/>
-        <variable
             name="request"
             type="gf.nuoma.pv.rent.model.Request"/>
     </data>
@@ -28,7 +25,6 @@
                 android:id="@+id/textView_date"
                 android:layout_width="@dimen/textWidtDate"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:text="@{request.date}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,14 +51,11 @@
                 app:layout_constraintStart_toEndOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <TextView
                 android:id="@+id/textView_room"
                 android:layout_width="@dimen/textWidtAccept"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:text="TextView"
+                android:text="@{request.room}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView_price"

@@ -28,7 +28,6 @@
                 android:id="@+id/textView_date"
                 android:layout_width="@dimen/textWidtDate"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:text="@{request.date}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +61,6 @@
                 android:id="@+id/button_accept"
                 android:layout_width="@dimen/textWidtAccept"
                 android:layout_height="0dp"
-                android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/white"
                 android:onClick="@{() -> callback.onAccept(request)}"
                 android:text='@{request.accept != 1 ? "PATVIRTINTA" : "NEPATVIRTINTA"}'

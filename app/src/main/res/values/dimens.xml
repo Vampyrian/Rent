@@ -7,7 +7,7 @@
 <!--CardView nustatymai-->
     <dimen name="cardView_content_pading">8dp</dimen>
     <dimen name="cardView_corner_radius">0dp</dimen>
-    <dimen name="cardView_elevation">8dp</dimen>
+    <dimen name="cardView_elevation">0dp</dimen>
     <dimen name="cardView_height">55dp</dimen>'
 
     <!--request row text width-->

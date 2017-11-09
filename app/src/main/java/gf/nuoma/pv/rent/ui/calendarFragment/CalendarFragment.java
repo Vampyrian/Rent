@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,14 +36,18 @@ public class CalendarFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseRef;
     private List<Request> mRequestList = new ArrayList<>();
+    private CalendarAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.calendar_fragment, container, false);
+        mAdapter = new CalendarAdapter();
 
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.calendar_fragment, container, false);
         mBinding.calendar.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
         mBinding.calendar.setOnDateChangedListener(dateSelectedListener);
+        mBinding.recyclerView.setAdapter(mAdapter);
+        mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
         return mBinding.getRoot();
     }
@@ -102,6 +107,35 @@ public class CalendarFragment extends Fragment {
         @Override
         public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
             selectDateInCalendar();
+
+            //Irasome i adapteri dienas ar yra uzimtu kambariu esama diena
+            int year = date.getYear();
+            int month = date.getMonth();
+            int day = date.getDay();
+            String stringYear = String.valueOf(year);
+            String stringMonth;
+            String stringDay;
+            if (month < 10) {
+                stringMonth = "0" + String.valueOf(month+1);
+            } else {
+                stringMonth = String.valueOf(month+1);
+            }
+            if (day < 10) {
+                stringDay = "0" + String.valueOf(day);
+            } else {
+                stringDay = String.valueOf(day);
+            }
+
+            String selectedDate = stringYear + "." + stringMonth + "." + stringDay;
+
+            List<Request> newList = new ArrayList<>();
+
+            for(Request request : mRequestList) {
+                if (request.date.equals(selectedDate)) {
+                    newList.add(request);
+                }
+            }
+            mAdapter.setRequestList(newList);
         }
     };
 
