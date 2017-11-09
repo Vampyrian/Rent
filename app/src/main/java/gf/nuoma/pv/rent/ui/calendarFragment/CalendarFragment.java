@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -17,9 +16,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import gf.nuoma.pv.rent.R;
 import gf.nuoma.pv.rent.databinding.CalendarFragmentBinding;
@@ -37,10 +40,13 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.calendar_fragment, container, false);
-        mBinding.calendarView.setOnDateChangeListener(dataChangeListener);
+
+        mBinding.calendar.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
+        mBinding.calendar.setOnDateChangedListener(dateSelectedListener);
 
         return mBinding.getRoot();
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -51,12 +57,16 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d(LOG_TAG, "Gavome duomenis");
-
                 for(DataSnapshot data: dataSnapshot.getChildren()) {
                     Request request = data.getValue(Request.class);
                     request.key = data.getKey();
-                    mRequestList.add(request);
+                    //Surasome tik tas datas kuriu savininkai esame mes
+                    String email = mAuth.getCurrentUser().getEmail();
+                    if (Objects.equals(email, request.owner)) {
+                        mRequestList.add(request);
+                    }
                 }
+                selectDateInCalendar();
             }
 
             @Override
@@ -66,23 +76,36 @@ public class CalendarFragment extends Fragment {
         });
     }
 
+    private void selectDateInCalendar() {
+        mBinding.calendar.clearSelection();
+
+        for(Request request : mRequestList) {
+            String year = request.date.substring(0, 4);
+            String month = request.date.substring(5,7);
+            String day = request.date.substring(8,10);
+
+            int intYear = Integer.parseInt(year);
+            int intMonth = Integer.parseInt(month) - 1;
+            int intDay = Integer.parseInt(day);
+
+            CalendarDay selectedDay = CalendarDay.from(intYear, intMonth, intDay);
+
+            mBinding.calendar.setDateSelected(selectedDay, true);
+        }
+    }
+
     /*
          Navigacija is UI
     */
 
-    private CalendarView.OnDateChangeListener dataChangeListener = new CalendarView.OnDateChangeListener() {
+    private OnDateSelectedListener dateSelectedListener = new OnDateSelectedListener() {
         @Override
-        public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-            long data = mBinding.calendarView.getDate();
-
-            //mBinding.calendarView.setDate(data);
-            int b = 8;
-            b = b + 2;
-            
-
-
+        public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+            selectDateInCalendar();
         }
     };
+
+
 
 
 

@@ -86,6 +86,7 @@ public class RequestFragment extends Fragment {
             String email = mAuth.getCurrentUser().getEmail();
             request.accept = 0;
             request.owner = email;
+            request.room = "Kambarys nr.1";
             mDatabaseRef.child(request.key).setValue(request);
         }
     };

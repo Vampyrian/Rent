@@ -48,10 +48,11 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                     Request newRequest = newRequestList.get(newItemPosition);
                     Request oldRequest = mRequestList.get(oldItemPosition);
                     return newRequest.accept == oldRequest.accept &&
-                            Objects.equals(newRequest.price, oldRequest.price) &&
-                            Objects.equals(newRequest.count, oldRequest.count) &&
-                            Objects.equals(newRequest.date, oldRequest.date)
-                            ;
+                            newRequest.price == oldRequest.price &&
+                            newRequest.count == oldRequest.count &&
+                            Objects.equals(newRequest.owner, oldRequest.owner) &&
+                            Objects.equals(newRequest.room, oldRequest.room) &&
+                            Objects.equals(newRequest.date, oldRequest.date);
                 }
             });
             mRequestList = newRequestList;
