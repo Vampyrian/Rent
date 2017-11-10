@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import gf.nuoma.pv.rent.databinding.MainActivityBinding;
+import gf.nuoma.pv.rent.ui.roomListFragment.RoomListFragment;
 import gf.nuoma.pv.rent.ui.calendarFragment.CalendarFragment;
 import gf.nuoma.pv.rent.ui.requestFragment.RequestFragment;
 import gf.nuoma.pv.rent.ui.signInFragment.SignInFragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     showCalendarFragment();
                     return true;
                 case R.id.navigation_info:
+                    showRoomListFragment();
                     return true;
                 case R.id.navigation_request:
                     showRequestFragment();
@@ -107,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void showCalendarFragment () {
         CalendarFragment fragment = new CalendarFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, fragment)
+                .commit();
+
+        hideKeyboard();
+    }
+
+    public void showRoomListFragment () {
+        RoomListFragment fragment = new RoomListFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)

@@ -9,9 +9,6 @@
     </style>
 
 
-
-
-
     //****************Tekstas viduryje recycleView
     <style name="RowTextView.Word">
         <item name="android:textColor">@color/colorPrimary</item>
@@ -35,7 +32,8 @@
         <item name="android:textSize">32sp</item>
     </style>
 
-    //************************************************************
+
+    //****************Tekstas
     <style name="TextView.Antraste">
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
@@ -50,6 +48,7 @@
     <style name="TextView">
         <item name="android:textSize">32sp</item>
     </style>
+
 
     //******************Mygtukai gerai ir blogai
     <style name="Button.True">
@@ -77,6 +76,13 @@
     <style name="ImageButtonInRow">
         <item name="android:layout_width">50dp</item>
         <item name="android:layout_height">50dp</item>
+    </style>
+
+
+    //*****************************Floating action button
+
+    <style name="Fab">
+
     </style>
 
 

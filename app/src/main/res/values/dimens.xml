@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
 
-<!--CardView nustatymai-->
+    <!--CardView nustatymai-->
     <dimen name="cardView_content_pading">8dp</dimen>
     <dimen name="cardView_corner_radius">0dp</dimen>
     <dimen name="cardView_elevation">0dp</dimen>
@@ -15,4 +15,7 @@
     <dimen name="textWidtCount">50dp</dimen>
     <dimen name="textWidtPrice">50dp</dimen>
     <dimen name="textWidtAccept">120dp</dimen>
+
+    <!--Floating action button-->
+
 </resources>
