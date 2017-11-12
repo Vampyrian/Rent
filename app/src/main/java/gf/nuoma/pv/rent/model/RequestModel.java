@@ -4,7 +4,7 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
-public class Request {
+public class RequestModel {
 
     public String date;
     public int count;
@@ -15,11 +15,11 @@ public class Request {
     @Exclude
     public String key;
 
-    public Request () {
+    public RequestModel() {
 
     }
 
-    public Request (String date, int count, int price, int accept) {
+    public RequestModel(String date, int count, int price, int accept) {
         this.date = date;
         this.count = count;
         this.price = price;

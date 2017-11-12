@@ -6,16 +6,17 @@
     <data>
         <variable
             name="callback"
-            type="gf.nuoma.pv.rent.ui.requestFragment.RequestFragment.RequestAdapterCallback"/>
+            type="gf.nuoma.pv.rent.ui.requestListFragment.RequestListFragment.OnListRowClickListener"/>
         <variable
             name="request"
-            type="gf.nuoma.pv.rent.model.Request"/>
+            type="gf.nuoma.pv.rent.model.RequestModel"/>
     </data>
 
     <android.support.v7.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/cardView_height"
+        android:onClick="@{() -> callback.onRowClick(request)}"
         app:cardCornerRadius="@dimen/cardView_corner_radius"
         app:cardElevation="@dimen/cardView_elevation"
         app:contentPadding="@dimen/cardView_content_pading">
@@ -47,21 +48,12 @@
                 android:id="@+id/textView_price"
                 android:layout_width="@dimen/textWidtCount"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text='@{Integer.toString(request.price) + " eur."}'
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/button_accept"
-                android:layout_width="@dimen/textWidtAccept"
-                android:layout_height="0dp"
-                android:backgroundTint="@color/white"
-                android:onClick="@{() -> callback.onAccept(request)}"
-                android:text='@{request.accept != 1 ? "PATVIRTINTA" : "NEPATVIRTINTA"}'
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="parent" />
 
 

@@ -13,9 +13,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import gf.nuoma.pv.rent.databinding.MainActivityBinding;
-import gf.nuoma.pv.rent.ui.roomListFragment.RoomListFragment;
 import gf.nuoma.pv.rent.ui.calendarFragment.CalendarFragment;
-import gf.nuoma.pv.rent.ui.requestFragment.RequestFragment;
+import gf.nuoma.pv.rent.ui.requestListFragment.RequestListFragment;
+import gf.nuoma.pv.rent.ui.roomListFragment.RoomListFragment;
 import gf.nuoma.pv.rent.ui.signInFragment.SignInFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = "MainActivity";
     private FirebaseAuth mAuth;
     private MainActivityBinding mBinding;
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     public void showRequestFragment () {
         mBinding.setBottomNavigationVisible(true);
 
-        RequestFragment fragment = new RequestFragment();
+        RequestListFragment fragment = new RequestListFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)

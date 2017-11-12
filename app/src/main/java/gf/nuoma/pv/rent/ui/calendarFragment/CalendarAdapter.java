@@ -11,13 +11,13 @@ import java.util.Objects;
 
 import gf.nuoma.pv.rent.R;
 import gf.nuoma.pv.rent.databinding.CalendarListRowBinding;
-import gf.nuoma.pv.rent.model.Request;
+import gf.nuoma.pv.rent.model.RequestModel;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarRequestViewHolder> {
 
-    private List<Request> mRequestList;
+    private List<RequestModel> mRequestList;
 
-    public void setRequestList (final List<Request> newRequestList){
+    public void setRequestList (final List<RequestModel> newRequestList){
         if (mRequestList == null) {
             mRequestList = newRequestList;
             notifyItemRangeInserted(0, newRequestList.size());
@@ -40,8 +40,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    Request newRequest = newRequestList.get(newItemPosition);
-                    Request oldRequest = mRequestList.get(oldItemPosition);
+                    RequestModel newRequest = newRequestList.get(newItemPosition);
+                    RequestModel oldRequest = mRequestList.get(oldItemPosition);
                     return newRequest.accept == oldRequest.accept &&
                             newRequest.price == oldRequest.price &&
                             newRequest.count == oldRequest.count &&

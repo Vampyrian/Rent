@@ -1,4 +1,4 @@
-package gf.nuoma.pv.rent.ui.requestFragment;
+package gf.nuoma.pv.rent.ui.requestListFragment;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.util.DiffUtil;
@@ -11,18 +11,18 @@ import java.util.Objects;
 
 import gf.nuoma.pv.rent.R;
 import gf.nuoma.pv.rent.databinding.RequestListRowBinding;
-import gf.nuoma.pv.rent.model.Request;
+import gf.nuoma.pv.rent.model.RequestModel;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestViewHolder> {
 
-    private RequestFragment.RequestAdapterCallback mCallback;
-    private List<Request> mRequestList;
+    private RequestListFragment.OnListRowClickListener mCallback;
+    private List<RequestModel> mRequestList;
 
-    RequestAdapter (RequestFragment.RequestAdapterCallback callback) {
+    RequestAdapter (RequestListFragment.OnListRowClickListener callback) {
         mCallback = callback;
     }
 
-    public void setRequestList (final List<Request> newRequestList){
+    public void setRequestList (final List<RequestModel> newRequestList){
         if (mRequestList == null) {
             mRequestList = newRequestList;
             notifyItemRangeInserted(0, newRequestList.size());
@@ -45,8 +45,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    Request newRequest = newRequestList.get(newItemPosition);
-                    Request oldRequest = mRequestList.get(oldItemPosition);
+                    RequestModel newRequest = newRequestList.get(newItemPosition);
+                    RequestModel oldRequest = mRequestList.get(oldItemPosition);
                     return newRequest.accept == oldRequest.accept &&
                             newRequest.price == oldRequest.price &&
                             newRequest.count == oldRequest.count &&
@@ -74,7 +74,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     @Override
     public void onBindViewHolder(RequestViewHolder holder, int position) {
         holder.mBinding.setRequest(mRequestList.get(position));
-//        holder.mBinding.executePendingBindings();
     }
 
     @Override

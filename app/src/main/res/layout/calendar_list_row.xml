@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
             name="request"
-            type="gf.nuoma.pv.rent.model.Request"/>
+            type="gf.nuoma.pv.rent.model.RequestModel"/>
     </data>
 
     <android.support.v7.widget.CardView
