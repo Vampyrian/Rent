@@ -2,6 +2,7 @@ package gf.nuoma.pv.rent.db;
 
 import android.util.Log;
 
+import gf.nuoma.pv.rent.db.network.NetworkDataSource;
 import gf.nuoma.pv.rent.excutor.AppExecutor;
 
 public class Repository {
@@ -10,16 +11,18 @@ public class Repository {
     private static final Object LOCK = new Object();
     private static Repository sInstance;
     private final AppExecutor mAppExecutor;
+    private final NetworkDataSource mNetworkDataSource;
 
-    private Repository (AppExecutor appExecutor) {
+    private Repository (AppExecutor appExecutor, NetworkDataSource networkDataSource) {
         mAppExecutor = appExecutor;
+        mNetworkDataSource = networkDataSource;
     }
 
-    public synchronized static Repository getInstance (AppExecutor appExecutor) {
+    public synchronized static Repository getInstance (AppExecutor appExecutor, NetworkDataSource networkDataSource) {
         Log.d(LOG_TAG, "Uzprase repositorijos is " + Thread.currentThread().getName());
         if (sInstance == null) {
             synchronized (LOCK) {
-                sInstance = new Repository(appExecutor);
+                sInstance = new Repository(appExecutor, networkDataSource);
                 Log.d(LOG_TAG, "Padareme nauja Repositorija is " + Thread.currentThread().getName());
             }
         }

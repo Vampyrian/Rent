@@ -3,6 +3,7 @@ package gf.nuoma.pv.rent.util;
 import android.content.Context;
 
 import gf.nuoma.pv.rent.db.Repository;
+import gf.nuoma.pv.rent.db.network.NetworkDataSource;
 import gf.nuoma.pv.rent.excutor.AppExecutor;
 import gf.nuoma.pv.rent.model.SharedViewModelFactory;
 
@@ -17,6 +18,8 @@ public class InjectorUtil {
     public static Repository provideRepository (Context context) {
 //        AppDatabase roomDb = AppDatabase.getInstance(context);
         AppExecutor appExecutor = AppExecutor.getInstance();
-        return Repository.getInstance(appExecutor);
+        NetworkDataSource networkDataSource = NetworkDataSource.getInstance(context, appExecutor);
+
+        return Repository.getInstance(appExecutor, networkDataSource);
     }
 }
