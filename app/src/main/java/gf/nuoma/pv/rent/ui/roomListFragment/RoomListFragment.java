@@ -3,22 +3,19 @@ package gf.nuoma.pv.rent.ui.roomListFragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import gf.nuoma.pv.rent.R;
 import gf.nuoma.pv.rent.databinding.RoomListFragmentBinding;
 import gf.nuoma.pv.rent.model.RoomModel;
+import gf.nuoma.pv.rent.ui.base.BaseFragment;
 
-public class RoomListFragment extends Fragment {
+public class RoomListFragment extends BaseFragment {
 
-    private static final String LOG_TAG = "RoomListFragment";
+    private static final String LOG_TAG = RoomListFragment.class.getSimpleName();
     private RoomListFragmentBinding mBinding;
-    private List<RoomModel> mRoomList;
 
     @Nullable
     @Override

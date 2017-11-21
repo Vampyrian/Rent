@@ -1,12 +1,9 @@
 package gf.nuoma.pv.rent.ui.calendarFragment;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +19,11 @@ import java.util.List;
 import gf.nuoma.pv.rent.R;
 import gf.nuoma.pv.rent.databinding.CalendarFragmentBinding;
 import gf.nuoma.pv.rent.model.RequestModel;
-import gf.nuoma.pv.rent.model.SharedViewModel;
+import gf.nuoma.pv.rent.ui.base.BaseFragment;
 
-public class CalendarFragment extends Fragment {
+public class CalendarFragment extends BaseFragment {
 
-    private static final String LOG_TAG = "CalendarFragment";
+    private static final String LOG_TAG = CalendarFragment.class.getSimpleName();
     private CalendarFragmentBinding mBinding;
     private List<RequestModel> mRequestList = new ArrayList<>();
     private CalendarAdapter mAdapter;
@@ -47,14 +44,7 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedViewModel sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        sharedViewModel.getAllRequest().observe(this, new Observer<List<RequestModel>>() {
-            @Override
-            public void onChanged(@Nullable List<RequestModel> requests) {
-                mRequestList = requests;
-                selectDateInCalendar();
-            }
-        });
+
     }
 
     @Override
@@ -64,22 +54,22 @@ public class CalendarFragment extends Fragment {
     }
 
     private void selectDateInCalendar() {
-        mBinding.calendar.clearSelection();
-
-        for(RequestModel request : mRequestList) {
-
-            String year = request.date.substring(0, 4);
-            String month = request.date.substring(5,7);
-            String day = request.date.substring(8,10);
-
-            int intYear = Integer.parseInt(year);
-            int intMonth = Integer.parseInt(month) - 1;
-            int intDay = Integer.parseInt(day);
-
-            CalendarDay selectedDay = CalendarDay.from(intYear, intMonth, intDay);
-
-            mBinding.calendar.setDateSelected(selectedDay, true);
-        }
+//        mBinding.calendar.clearSelection();
+//
+//        for(RequestModel request : mRequestList) {
+//
+//            String year = request.date.substring(0, 4);
+//            String month = request.date.substring(5,7);
+//            String day = request.date.substring(8,10);
+//
+//            int intYear = Integer.parseInt(year);
+//            int intMonth = Integer.parseInt(month) - 1;
+//            int intDay = Integer.parseInt(day);
+//
+//            CalendarDay selectedDay = CalendarDay.from(intYear, intMonth, intDay);
+//
+//            mBinding.calendar.setDateSelected(selectedDay, true);
+//        }
     }
 
     /*
@@ -91,34 +81,34 @@ public class CalendarFragment extends Fragment {
         public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
             selectDateInCalendar();
 
-            //Irasome i adapteri dienas ar yra uzimtu kambariu esama diena
-            int year = date.getYear();
-            int month = date.getMonth();
-            int day = date.getDay();
-            String stringYear = String.valueOf(year);
-            String stringMonth;
-            String stringDay;
-            if (month < 10) {
-                stringMonth = "0" + String.valueOf(month+1);
-            } else {
-                stringMonth = String.valueOf(month+1);
-            }
-            if (day < 10) {
-                stringDay = "0" + String.valueOf(day);
-            } else {
-                stringDay = String.valueOf(day);
-            }
-
-            String selectedDate = stringYear + "." + stringMonth + "." + stringDay;
-
-            List<RequestModel> newList = new ArrayList<>();
-
-            for(RequestModel request : mRequestList) {
-                if (request.date.equals(selectedDate)) {
-                    newList.add(request);
-                }
-            }
-            mAdapter.setRequestList(newList);
+//            //Irasome i adapteri dienas ar yra uzimtu kambariu esama diena
+//            int year = date.getYear();
+//            int month = date.getMonth();
+//            int day = date.getDay();
+//            String stringYear = String.valueOf(year);
+//            String stringMonth;
+//            String stringDay;
+//            if (month < 10) {
+//                stringMonth = "0" + String.valueOf(month+1);
+//            } else {
+//                stringMonth = String.valueOf(month+1);
+//            }
+//            if (day < 10) {
+//                stringDay = "0" + String.valueOf(day);
+//            } else {
+//                stringDay = String.valueOf(day);
+//            }
+//
+//            String selectedDate = stringYear + "." + stringMonth + "." + stringDay;
+//
+//            List<RequestModel> newList = new ArrayList<>();
+//
+//            for(RequestModel request : mRequestList) {
+//                if (request.date.equals(selectedDate)) {
+//                    newList.add(request);
+//                }
+//            }
+//            mAdapter.setRequestList(newList);
         }
     };
 

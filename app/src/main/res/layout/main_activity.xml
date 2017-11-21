@@ -4,7 +4,6 @@
 
     <data>
         <import type="android.view.View"/>
-
         <variable
             name="bottomNavigationVisible"
             type="boolean"/>
@@ -29,11 +28,12 @@
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
             android:background="?android:attr/windowBackground"
-            android:visibility="@{bottomNavigationVisible ? View.VISIBLE : View.GONE}"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/navigation">
+            <!--android:visibility="@{bottomNavigationVisible ? View.VISIBLE : View.GONE}"-->
 
         </android.support.design.widget.BottomNavigationView>
 

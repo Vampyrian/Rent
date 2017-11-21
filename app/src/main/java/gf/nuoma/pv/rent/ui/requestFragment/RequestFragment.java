@@ -1,6 +1,7 @@
 package gf.nuoma.pv.rent.ui.requestFragment;
 
-import android.support.v4.app.Fragment;
+import gf.nuoma.pv.rent.ui.base.BaseFragment;
 
-public class RequestFragment extends Fragment {
+public class RequestFragment extends BaseFragment {
+
 }
