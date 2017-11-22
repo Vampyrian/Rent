@@ -29,7 +29,8 @@ public class RoomListFragment extends BaseFragment {
     ************************UI paspaudimu apdirbimas
     */
 
-    public void onFabClicked (View v) {
+    public void onFabClicked () {
+        sharedViewModel.paleiskServisa();
     }
 
     interface OnListRowClickListener {

@@ -15,6 +15,10 @@ public class SharedViewModel extends ViewModel {
         mRepository = repository;
     }
 
+    public void paleiskServisa () {
+        mRepository.paleiskServisa();
+    }
+
 
 
 

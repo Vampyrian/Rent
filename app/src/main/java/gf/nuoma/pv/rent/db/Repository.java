@@ -23,9 +23,17 @@ public class Repository {
         if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = new Repository(appExecutor, networkDataSource);
-                Log.d(LOG_TAG, "Padareme nauja Repositorija is " + Thread.currentThread().getName());
+                Log.d(LOG_TAG, "Pirma syki padareme nauja Repositorija is " + Thread.currentThread().getName());
             }
         }
         return sInstance;
+    }
+
+    public void paleiskServisa () {
+        startFetchService();
+    }
+
+    private void startFetchService () {
+        mNetworkDataSource.startMyIntentService();
     }
 }

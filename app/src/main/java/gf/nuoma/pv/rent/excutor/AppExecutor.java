@@ -24,10 +24,9 @@ public class AppExecutor {
     }
 
     public static AppExecutor getInstance (){
-
         if (sInstance == null) {
             synchronized (LOCK) {
-                Log.d(LOG_TAG, "Sukuriam AppExecutor is "  + Thread.currentThread().getName());
+                Log.d(LOG_TAG, "Pirma syki sukuriam AppExecutor is "  + Thread.currentThread().getName());
                 int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
                 sInstance = new AppExecutor(Executors.newSingleThreadExecutor(),
                         Executors.newFixedThreadPool(NUMBER_OF_CORES),
